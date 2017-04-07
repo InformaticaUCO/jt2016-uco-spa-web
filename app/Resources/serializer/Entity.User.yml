@@ -1,0 +1,5 @@
+AppBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        organization:
+            expose: true

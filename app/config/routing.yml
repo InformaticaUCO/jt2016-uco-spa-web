@@ -1,0 +1,18 @@
+ssp_bundle:
+    resource: '@SSPGuardBundle/Resources/config/routing/connect.xml'
+
+app:
+    resource: "@AppBundle/Controller/Frontend"
+    type:     "annotation"
+
+api_folder:
+    resource: "@AppBundle/Controller/Backend/FolderController.php"
+    type: "rest"
+    prefix: "/api/v1"
+
+api_login_check:
+    path: /api/login_check
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

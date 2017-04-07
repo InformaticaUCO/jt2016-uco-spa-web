@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="consigna.listener.expirable_interface" class="AppBundle\EventListener\Doctrine\ExpirableInterfaceListener">
+            <argument>%expire_date%</argument>
+            <tag name="doctrine.event_subscriber"/>
+        </service>
+        
+        <service id="consigna.listener.protectable_interface" class="AppBundle\EventListener\Doctrine\ProtectableInterfaceListener">
+            <argument type="service" id="security.encoder_factory"/>
+            <tag name="doctrine.event_subscriber"/>
+        </service>
+
+        <service id="consigna.listener.traceable_interface" class="AppBundle\EventListener\Doctrine\TraceableInterfaceListener">
+            <argument type="service" id="gedmo_doctrine_extensions.listener.ip_traceable"/>
+            <argument type="service" id="request_stack"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="gedmo_doctrine_extensions.listener.ip_traceable" class="Gedmo\IpTraceable\IpTraceableListener" public="false">
+            <tag name="doctrine.event_subscriber" connection="default" />
+            <call method="setAnnotationReader">
+                <argument type="service" id="annotation_reader" />
+            </call>
+        </service>
+
+    </services>
+</container>

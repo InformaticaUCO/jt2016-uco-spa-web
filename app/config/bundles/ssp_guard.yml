@@ -1,0 +1,6 @@
+ssp_guard:
+    installation_path: "%simplesamlphp_installation_path%"
+    auth_sources:
+        consignasp:
+            title: "Rediris (IDP)"
+            user_id: "mail"

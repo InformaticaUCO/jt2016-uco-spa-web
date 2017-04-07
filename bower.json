@@ -1,0 +1,29 @@
+{
+  "name": "jt2016web",
+  "authors": [
+    "Sergio Gómez <sergio@uco.es>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "https://www.uco.es",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "axios": "^0.13.1",
+    "hello": "^1.13.4",
+    "ng-prettyjson": "^0.2.0",
+    "semantic": "semantic-ui#^2.1.8"
+  },
+  "resolutions": {
+    "angular": "~1.4.7"
+  }
+}

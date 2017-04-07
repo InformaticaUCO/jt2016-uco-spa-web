@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="consigna.repository.file" class="AppBundle\Repository\FileRepository">
+            <argument>AppBundle\Entity\File</argument>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+        </service>
+
+        <service id="consigna.repository.folder" class="AppBundle\Repository\FolderRepository">
+            <argument>AppBundle\Entity\Folder</argument>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+        </service>
+
+        <service id="consigna.repository.group" class="AppBundle\Repository\GroupRepository">
+            <argument>AppBundle\Entity\Group</argument>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+        </service>
+
+        <service id="consigna.repository.organization" class="AppBundle\Repository\OrganizationRepository">
+            <argument>AppBundle\Entity\Organization</argument>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+        </service>
+
+        <service id="consigna.repository.user" class="AppBundle\Repository\UserRepository">
+            <argument>AppBundle\Entity\User</argument>
+            <factory service="doctrine.orm.entity_manager" method="getRepository"/>
+        </service>
+
+    </services>
+
+</container>

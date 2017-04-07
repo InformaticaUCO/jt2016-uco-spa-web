@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        {% block javascripts %}
+            <script src="{{ asset('components/axios/dist/axios.min.js') }}" type="application/javascript"></script>
+            <script src="{{ asset('components/hello/dist/hello.all.js') }}" type="application/javascript"></script>
+            <script src="{{ asset('js/hello/modules/simplesaml.js') }}" type="application/javascript"></script>
+            <script src="{{ asset('js/hello/modules/simplesaml.js') }}" type="application/javascript"></script>
+
+
+            <script type="application/javascript">
+                var socialToken;
+                var serverToken;
+
+                hello.on('auth.login', function (auth) {
+                    socialToken = auth.authResponse.access_token;
+
+                    authenticate(auth.network, socialToken).then(function (token) {
+                        serverToken = token;
+                        console.log(token);
+
+                        localStorage.setItem('token', token);
+                    });
+                });
+
+                hello.init({
+                    simplesaml: '{{ oauth2_client_id }}'
+                }, {
+                    redirect_uri: '{{ path('redirect', {}, false) }}'
+                });
+
+                function authenticate(network, socialToken) {
+                    return new Promise(function (resolve, reject) {
+                        axios
+                            .post('{{ path('new_jwt_token', {}, false) }}', {
+                                network: network,
+                                socialToken: socialToken
+                            })
+                            .then(function (response) {
+                                resolve(response.data.token)
+                            })
+                            .catch(function (error) {
+                                resolve(error)
+                            });
+                    });
+                }
+            </script>
+        {% endblock %}
+    </body>
+</html>

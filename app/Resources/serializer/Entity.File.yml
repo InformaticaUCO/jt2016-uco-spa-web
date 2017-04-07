@@ -1,0 +1,7 @@
+AppBundle\Entity\File:
+    exclusion_policy: ALL
+    properties:
+        name:
+            expose: true
+        slug:
+            expose: true

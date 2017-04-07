@@ -1,0 +1,37 @@
+AppBundle\Entity\Folder:
+    exclusion_policy: ALL
+    properties:
+        name:
+            expose: true
+        description:
+            expose: true
+        slug:
+            expose: true
+        owner:
+            expose: true
+        createdAt:
+            expose: true
+        updatedAt:
+            expose: true
+        expiresAt:
+            expose: true
+        files:
+            expose: true
+            groups: [show]
+        sharedCode:
+            expose: true
+            groups: [security]
+
+    relations:
+        -
+            rel: self
+            href:
+                route: get_folder
+                parameters: { slug: expr(object.getSlug()) }
+                absolute: true
+        -
+            rel: folders
+            href:
+                route: get_folders
+                absolute: true
+

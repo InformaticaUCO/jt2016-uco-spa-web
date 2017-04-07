@@ -1,0 +1,5 @@
+jms_serializer:
+    metadata:
+        directories:
+            - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }
+            - { path: %kernel.root_dir%/Resources/serializer, namespace_prefix: 'AppBundle' }

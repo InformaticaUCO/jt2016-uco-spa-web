@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Security -->
+
+        <service id="consigna.user.provider" class="AppBundle\Security\User\ConsignaUserProvider">
+            <argument type="service" id="fos_user.user_provider.username"/>
+        </service>
+
+        <service id="consigna.admin.authenticator" class="AppBundle\Security\ConsignaAuthenticator">
+            <argument type="service" id="router"/>
+            <argument type="service" id="ssp.guard.registry"/>
+            <argument>consignasp</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        
+        <!-- Voters -->
+        <service id="consigna.voter.owner" class="AppBundle\Security\Voter\ConsignaVoter">
+            <tag name="security.voter"/>
+        </service>
+    </services>
+
+</container>
